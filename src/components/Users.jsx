@@ -19,12 +19,12 @@ const Users = () => {
           }).then((result) => {
             if (result.isConfirmed) {  
 
-                fetch(`http://localhost:5000/users/${id}`, {
+                fetch(`https://coffee-store-server-pi-ivory.vercel.app/users/${id}`, {
                     method: "DELETE"
                 })
                 .then(res => res.json())
                 .then(data => {
-                    console.log( 'delete is done',data);
+                    // console.log( 'delete is done',data);
                     if (data.deletedCount) {
                         Swal.fire({
                                 title: "Deleted!",
@@ -44,7 +44,7 @@ const Users = () => {
 
     return (
         <div>
-            <h2 className='text-3xl'>users : {users.length}</h2>
+            <h2 className='text-3xl'>users Count : {users.length}</h2>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

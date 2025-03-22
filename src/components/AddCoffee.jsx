@@ -15,9 +15,9 @@ const AddCoffee = () => {
         const photo = form.photo.value;
 
         const newCoffee = {name,quantity,supplier,taste,category,details,photo}
-        console.log(newCoffee);
+        // console.log(newCoffee);
 
-        fetch('http://localhost:5000/coffee', {
+        fetch('https://coffee-store-server-pi-ivory.vercel.app/coffee', {
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
@@ -26,7 +26,7 @@ const AddCoffee = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             if (data.insertedId) {
                 Swal.fire({
                     title: 'Success!',
@@ -86,7 +86,7 @@ const AddCoffee = () => {
 
                         </fieldset>
                     </div>
-                    <div className='md:w-1/2 ml-4'>
+                    <div className='md:w-1/2 ml-4 '>
                         <fieldset className="fieldset">
                             <legend className="fieldset-legend"> Details</legend>
                             <input type="text" name='details' className="input w-full" placeholder="Details" />

@@ -4,23 +4,23 @@ import { Link } from 'react-router-dom';
 
 const SignIn = () => {
 
-    const {signInUser} = useContext(AuthContext)
+    const {signInUser,setUser} = useContext(AuthContext)
 
     const handleSignin = e => {
         e.preventDefault()
 
         const email = e.target.email.value 
         const password = e.target.password.value
-        console.log(email,password); 
+        // console.log(email,password); 
         signInUser(email,password)
         .then(result => {
-            console.log(result);
+            // console.log(result);
 
             // update last login time
             const lastSignInTime = result?.user?.metadata?.lastSignInTime
             const loginInfo = {email,lastSignInTime}
 
-            fetch(`http://localhost:5000/users`, {
+            fetch(`https://coffee-store-server-pi-ivory.vercel.app/users`, {
                 method: "PATCH",
                 headers: {
                     'content-type' : 'application/json'
@@ -29,13 +29,15 @@ const SignIn = () => {
             })
             .then(res => res.json())
             .then(data => {
-                console.log( 'signin info updated in db', data);
+                // console.log( 'signin info updated in db', data);
+                setUser(data)
             })
 
 
         })
         .catch( error => {
-            console.log(error);
+            // console.log(error);
+            error.message
         })
 
     }
